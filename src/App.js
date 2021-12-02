@@ -2,7 +2,6 @@ import React from 'react';
 import TodoItem from './TodoItem';
 import { addTodoAction, saveHeading, saveMessage} from './actions';
 import { useSelector, useDispatch } from 'react-redux';
-import Navbar from './Navbar';
 
 function TodoList (state) {
   const todoList = state.map(el => (
@@ -45,10 +44,7 @@ function App() {
           </div>
           <button 
             type="submit" 
-            onClick={() => {
-              dispatch(addTodoAction({ heading: 'heading', message: 'message' }));
-              alert(`Your todo is saved! Heading: ${heading}, message: ${message }`); // alert is before saving to state
-            }} 
+            onClick={() => dispatch(addTodoAction({ heading: 'heading', message: 'message' }))} 
           >+ Add todo</button>
         </form>
         <ul className='todoList'>

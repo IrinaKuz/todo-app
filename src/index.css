@@ -33,6 +33,7 @@ code {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  z-index: 1000;
 }
 h1 {
   font-family: 'Roboto', sans-serif;
@@ -69,6 +70,14 @@ h1 {
 
 .addTodoForm button {
   font-size: inherit;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  padding: 0.5em 1em;
+  border: none;
+  background-image: url('warm_bg.jpg');
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
 }
 .todoList {
   list-style: none;
