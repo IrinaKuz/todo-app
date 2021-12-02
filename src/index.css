@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +15,61 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.App {
+  margin-left: 50px;
+}
+.addTodoForm {
+  border: 1px solid;
+  display: flex-column;
+  width: 500px;
+  padding: 1em;
+  background-color: pink;
+  text-align: center;
+}
+.addTodoForm h2 {
+  text-align: center;
+}
+.addTodoForm > div {
+  display: flex;
+}
+.addTodoForm label {
+  width: 30%;
+}
+.addTodoForm input, textarea {
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  width: 50%;
+}
+
+.addTodoForm button {
+  font-size: inherit;
+}
+.todoList {
+  list-style: none;
+}
+.todoItem {
+  margin-bottom: 1.5em;
+  list-style: none;
+  position: relative;
+}
+.todoItem>span {
+  position: absolute;
+  top: 0;
+  left: 20%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6em;
+  cursor: pointer;
+  overflow: hidden;
+}
+.todoItem>span:hover {
+  transform:rotate(360deg);
+  transform-origin: center;
+  transition: all 0.5s;
 }

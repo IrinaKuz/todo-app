@@ -2,16 +2,61 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+
+// initial state
+const initial_state = {
+  heading: 'Hello',
+  message: 'Redux!',
+  todo: []
+}
+
+function addTodoReducer(state = initial_state, action) {
+  switch(action.type) {
+    case 'addTodo':
+      return {
+        ...state,
+        heading: '',
+        message: '',
+        todo: state.todo.concat({ // add the new todo to the list of todos
+          heading: state.heading, // a new todo is made up of current heading
+          message: state.message, // and a current message
+          date: new Date()      // add new date
+        })
+      }
+    case 'deleteTodo':
+      return {
+        ...state,
+        todo: state.todo.filter((el) => el.date !== action.date)
+      }
+    case 'HEADING':
+      return {
+        ...state,
+        heading: action.heading
+      }
+    case 'MESSAGE':
+      return {
+        ...state,
+        message: action.message
+      }
+    default:
+      return {
+        ...state
+      }
+  }
+}
+// create store
+const store = createStore(addTodoReducer);
+export default store;
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

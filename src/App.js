@@ -1,25 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import TodoItem from './TodoItem';
+import { addTodoAction, saveHeading, saveMessage} from './actions';
+import { useSelector, useDispatch } from 'react-redux';
+
+
+function TodoList (state) {
+  const todoList = state.map(el => (
+      <TodoItem 
+        key={el.date} 
+        date={el.date}
+        heading={el.heading} 
+        body={el.message} 
+      />)
+    );
+  return todoList;
+}
 
 function App() {
+  const todo = useSelector(state => state.todo);
+  const heading = useSelector(state => state.heading);
+  const message = useSelector(state => state.message);
+  const dispatch = useDispatch();
+  const todoList = TodoList(todo);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+      <div className="App">
+        <h1>My list of important things to do</h1>
+        <form className="addTodoForm" onSubmit={(e) => { e.preventDefault()}}>
+          <h2>Add todo</h2>
+          <div>
+            <label>Heading: </label>
+            <input 
+              type="text" 
+              onChange={(e) => dispatch(saveHeading(e.target.value))}
+              value={heading}
+            />
+          </div>
+          <div>
+            <label>Message: </label>
+            <textarea 
+              rows="5"
+              onChange={(e) => dispatch(saveMessage(e.target.value))}
+              value={message}
+            >
+            </textarea>
+          </div>
+          <button 
+            type="submit" 
+            onClick={() => {
+              dispatch(addTodoAction({ heading: 'heading', message: 'message' }));
+              alert(`Your todo is saved! Heading: ${heading}, message: ${message }`); // alert is before saving to state
+            }} 
+          >+ Add todo</button>
+        </form>
+        <ul className='todoList'>
+          { todoList }
+        </ul>
+      </div>
+    );
+  }
 
 export default App;
