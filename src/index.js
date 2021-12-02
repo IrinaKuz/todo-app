@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import Navbar from './Navbar';
 
 
 // initial state
@@ -54,6 +55,7 @@ export default store;
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
+      <Navbar />
       <App />
     </React.StrictMode>
   </Provider>,

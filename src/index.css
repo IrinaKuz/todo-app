@@ -5,11 +5,14 @@
 }
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'M PLUS 1 Code', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('warm_bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 code {
@@ -17,31 +20,51 @@ code {
     monospace;
 }
 .App {
-  margin-left: 50px;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+.navbar {
+  padding: 1em;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  background-image: url('warm_bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+h1 {
+  font-family: 'Roboto', sans-serif;
 }
 .addTodoForm {
   border: 1px solid;
-  display: flex-column;
-  width: 500px;
   padding: 1em;
-  background-color: pink;
+  background-color: rgba(255,255,255,0.5);
   text-align: center;
 }
 .addTodoForm h2 {
   text-align: center;
+  margin-bottom: 0.5em;
+  font-family: 'Roboto', sans-serif;
 }
 .addTodoForm > div {
   display: flex;
+  flex-direction: column;
+  align-items: baseline;
 }
 .addTodoForm label {
-  width: 30%;
+  text-align: right;
+  font-weight: bold;
+  padding: 0.5em 0;
+  font-family: 'Roboto', sans-serif;
 }
 .addTodoForm input, textarea {
   font-size: inherit;
   font-family: inherit;
   padding: 0.5em;
   margin-bottom: 1em;
-  width: 50%;
+  width: 100%;
 }
 
 .addTodoForm button {
@@ -54,11 +77,17 @@ code {
   margin-bottom: 1.5em;
   list-style: none;
   position: relative;
+  border-bottom: 1px solid;
+}
+.todoItem>h2{
+  padding: 1em;
+  background-color: rgba(0,0,0,0.3);
+  color: white;
 }
 .todoItem>span {
   position: absolute;
-  top: 0;
-  left: 20%;
+  top: 1em;
+  right: 1em;
   width: 24px;
   height: 24px;
   display: flex;
@@ -72,4 +101,27 @@ code {
   transform:rotate(360deg);
   transform-origin: center;
   transition: all 0.5s;
+}
+.todoItem>p {
+  margin: 1em 0;
+  padding: 0 1em;
+}
+
+@media screen and (min-width: 800px){
+  .App {
+    width: 80%;
+  }
+  .addTodoForm > div {
+    flex-direction: row;
+  }
+  .addTodoForm label {
+    width: 20%;
+    padding: 0.5em;
+  }
+}
+
+@media screen and (min-width: 1200px){
+  .App {
+    width: 60%;
+  }
 }

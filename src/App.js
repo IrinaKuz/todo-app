@@ -2,7 +2,7 @@ import React from 'react';
 import TodoItem from './TodoItem';
 import { addTodoAction, saveHeading, saveMessage} from './actions';
 import { useSelector, useDispatch } from 'react-redux';
-
+import Navbar from './Navbar';
 
 function TodoList (state) {
   const todoList = state.map(el => (
@@ -24,11 +24,10 @@ function App() {
   const todoList = TodoList(todo);
   return (
       <div className="App">
-        <h1>My list of important things to do</h1>
         <form className="addTodoForm" onSubmit={(e) => { e.preventDefault()}}>
           <h2>Add todo</h2>
           <div>
-            <label>Heading: </label>
+            <label>Heading</label>
             <input 
               type="text" 
               onChange={(e) => dispatch(saveHeading(e.target.value))}
@@ -36,7 +35,7 @@ function App() {
             />
           </div>
           <div>
-            <label>Message: </label>
+            <label>To do</label>
             <textarea 
               rows="5"
               onChange={(e) => dispatch(saveMessage(e.target.value))}
