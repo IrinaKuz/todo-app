@@ -4,9 +4,9 @@ import { addTodoAction } from './actions';
 import { useSelector, useDispatch } from 'react-redux';
 
 function TodoList (state) {
-  const todoList = state.map(el => (
+  const todoList = state.map((el, ind) => (
       <TodoItem 
-        key={el.date} 
+        key={ind} 
         date={el.date}
         heading={el.heading} 
         body={el.message} 
@@ -48,8 +48,10 @@ function App() {
             type="submit" 
             onClick={
               () => { dispatch(addTodoAction({ heading, message, date: new Date() }));
-                      setHeading('');
-                      setMessage('');}} 
+                      setHeading(' ');
+                      setMessage(' ');
+                    }
+            } 
           >+ Add todo</button>
         </form>
         <ul className='todoList'>
