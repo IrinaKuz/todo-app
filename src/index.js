@@ -9,8 +9,6 @@ import Navbar from './Navbar';
 
 // initial state
 const initial_state = {
-  heading: 'Hello',
-  message: 'Redux!',
   todo: []
 }
 
@@ -19,28 +17,16 @@ function addTodoReducer(state = initial_state, action) {
     case 'addTodo':
       return {
         ...state,
-        heading: '',
-        message: '',
         todo: state.todo.concat({ // add the new todo to the list of todos
-          heading: state.heading, // a new todo is made up of current heading
-          message: state.message, // and a current message
-          date: new Date()      // add new date
+          heading: action.heading, 
+          message: action.message, 
+          date: action.date  
         })
       }
     case 'deleteTodo':
       return {
         ...state,
         todo: state.todo.filter((el) => el.date !== action.date)
-      }
-    case 'HEADING':
-      return {
-        ...state,
-        heading: action.heading
-      }
-    case 'MESSAGE':
-      return {
-        ...state,
-        message: action.message
       }
     default:
       return {

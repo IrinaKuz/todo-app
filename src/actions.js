@@ -1,20 +1,9 @@
-export const saveHeading = (heading) => {
+export const addTodoAction = ({heading, message, date}) => {
     return {
-      type: 'HEADING',
-      heading: heading
-    }
-}
-
-export const saveMessage = (message) => {
-    return {
-      type: 'MESSAGE',
-      message: message
-    }
-}
-
-export const addTodoAction = (todo) => {
-    return {
-      type: 'addTodo'
+      type: 'addTodo',
+      heading: heading,
+      message: message,
+      date: date
     }
 }
 

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TodoItem from './TodoItem';
-import { addTodoAction, saveHeading, saveMessage} from './actions';
+import { addTodoAction } from './actions';
 import { useSelector, useDispatch } from 'react-redux';
 
 function TodoList (state) {
@@ -16,9 +16,11 @@ function TodoList (state) {
 }
 
 function App() {
+  const [heading, setHeading] = useState('Redux');
+  const [message, setMessage] = useState('Hello, World!');
+
   const todo = useSelector(state => state.todo);
-  const heading = useSelector(state => state.heading);
-  const message = useSelector(state => state.message);
+
   const dispatch = useDispatch();
   const todoList = TodoList(todo);
   return (
@@ -29,7 +31,7 @@ function App() {
             <label>Heading</label>
             <input 
               type="text" 
-              onChange={(e) => dispatch(saveHeading(e.target.value))}
+              onChange={(e) => setHeading(e.target.value)}
               value={heading}
             />
           </div>
@@ -37,14 +39,17 @@ function App() {
             <label>To do</label>
             <textarea 
               rows="5"
-              onChange={(e) => dispatch(saveMessage(e.target.value))}
+              onChange={(e) => setMessage(e.target.value)}
               value={message}
             >
             </textarea>
           </div>
           <button 
             type="submit" 
-            onClick={() => dispatch(addTodoAction({ heading: 'heading', message: 'message' }))} 
+            onClick={
+              () => { dispatch(addTodoAction({ heading, message, date: new Date() }));
+                      setHeading('');
+                      setMessage('');}} 
           >+ Add todo</button>
         </form>
         <ul className='todoList'>
